@@ -43,8 +43,107 @@
         color: #343a40;
         line-height: 1;
       }
+
+      .container {
+        width: 800px;
+        height: 400px;
+        background-color: #e6fcf5;
+        /* margin: 100px auto; */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .btn {
+        width: 30px;
+        height: 30px;
+        padding: 4px;
+        border: 1px solid #087f5b;
+        border-radius: 50%;
+        stroke: #087f5b;
+      }
+
+      .btn:hover {
+        stroke: #fff;
+        border: 1px solid #fff;
+        background-color: #087f5b;
+      }
+
+      .pages:link,
+      .pages:visited {
+        width: 30px;
+        height: 30px;
+        text-decoration: none;
+        color: #343a40;
+        border-radius: 50%;
+
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .pages:hover {
+        background-color: #087f5b;
+        color: #fff;
+      }
+
+      /* .pages; */
     </style>
-    <title>Document</title>
+    <title>Pagination</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="pagination">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="btn btn--left"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        <a href="#" class="pages">1</a>
+        <a href="#" class="pages">2</a>
+        <a href="#" class="pages">3</a>
+        <a href="#" class="pages">4</a>
+        <a href="#" class="pages">5</a>
+        <a href="#" class="pages">6</a>
+        <span>...</span>
+        <a href="#" class="pages">23</a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="btn btn--right"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </div>
+    </div>
+  </body>
 </html>
