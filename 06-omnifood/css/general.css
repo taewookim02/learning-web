@@ -24,16 +24,20 @@ Paragraph default: 1.6
 ---- 02 COLORS
 
 - Primary: #e67e22
-- Tints: #fdf2e9, #fae5d3
-- Shades: #cf711f, 
+- Tints: #fdf2e9, #fae5d3, #eb984e
+- Shades: #cf711f, #45260a
 - Accents:
 - Greys: 
+#888
+#767676 (lightest grey allowed on #fff)
 #6f6f6f (lightest grey allowed on #fdf2e9)
 #555
 #333
 
 
 --- 05 SHADOWS
+
+box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
 
 
 --- 06 BORDER-RADIUS
@@ -109,6 +113,10 @@ body {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.grid--5-cols {
+  grid-template-columns: repeat(5, 1fr);
+}
+
 .grid--center-v {
   align-items: center;
 }
@@ -150,6 +158,7 @@ body {
   letter-spacing: 0.75px;
 }
 
+.btn,
 .btn:link,
 .btn:visited {
   display: inline-block;
@@ -159,6 +168,11 @@ body {
   font-weight: 600;
   padding: 1.6rem 3.2rem;
   border-radius: 9px;
+
+  /* Only for the .btn */
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 
   /* Put transition on original "state", in this case the .btn class */
   /* transition: background-color 0.3s; */
@@ -192,6 +206,18 @@ body {
   box-shadow: inset 0 0 0 3px #fff;
 }
 
+.btn--form {
+  background-color: #45260a;
+  color: #fdf2e9;
+  align-self: end;
+  padding: 1.2rem;
+}
+
+.btn--form:hover {
+  background-color: #fff;
+  color: #555;
+}
+
 .link:link,
 .link:visited {
   display: inline-block;
@@ -207,24 +233,6 @@ body {
   color: #cf711f;
   /* border-bottom: none; makes it jump */
   border-bottom: 1px solid transparent;
-}
-
-/* HELPER/SETTINGS CLASSES */
-
-.margin-right-sm {
-  margin-right: 1.6rem !important;
-}
-
-.margin-bottom-md {
-  margin-bottom: 4.8rem !important;
-}
-
-.center-text {
-  text-align: center;
-}
-
-strong {
-  font-weight: 500;
 }
 
 .list {
@@ -245,6 +253,31 @@ strong {
   width: 3rem;
   height: 3rem;
   color: #e67e22;
+}
+
+*:focus {
+  outline: none;
+  /* outline: 4px dotted #e67e22; */
+  /* outline-offset: 8px; */
+  box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
+}
+
+/* HELPER/SETTINGS CLASSES */
+
+.margin-right-sm {
+  margin-right: 1.6rem !important;
+}
+
+.margin-bottom-md {
+  margin-bottom: 4.8rem !important;
+}
+
+.center-text {
+  text-align: center;
+}
+
+strong {
+  font-weight: 500;
 }
 
 .crossline {
