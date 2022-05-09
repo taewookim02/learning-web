@@ -125,4 +125,37 @@ const description = `${country} is in ${continent}, and its ${population} people
 //   ? console.log("South Korea's population is above average")
 //   : console.log(`${country}'s population is below average`);
 
+//////////////////////////////////////////// Functions
+
+// function describeCountry(country, population, capitalCity) {
+//   const output = `${country} has ${population} people and its capital city is ${capitalCity}`;
+//   return output;
+// }
+
+// korea = describeCountry(country, population, "Seoul");
+// india = describeCountry("India", 1000000000, "Delhi");
+// china = describeCountry("China", 1200000000, "Beijing");
+
+// console.log(korea, india, china);
+
+////////////////////////////////////////////
+function percentageOfWorld1(population) {
+  return (population / 7900000000) * 100;
+}
+
+populationChina = 1441000000;
+populationJapan = 200000000;
+
+// console.log(percentageOfWorld1(population));
+// console.log(percentageOfWorld1(populationChina));
+// console.log(percentageOfWorld1(populationJapan));
+
+const percentageOfWorld2 = function (population) {
+  return (population / 7900000000) * 100;
+};
+
+// console.log(percentageOfWorld2(population));
+// console.log(percentageOfWorld2(populationChina));
+// console.log(percentageOfWorld2(populationJapan));
+
 ////////////////////////////////////////////
