@@ -139,6 +139,7 @@ const description = `${country} is in ${continent}, and its ${population} people
 // console.log(korea, india, china);
 
 ////////////////////////////////////////////
+// functions
 function percentageOfWorld1(population) {
   return (population / 7900000000) * 100;
 }
@@ -157,5 +158,63 @@ const percentageOfWorld2 = function (population) {
 // console.log(percentageOfWorld2(population));
 // console.log(percentageOfWorld2(populationChina));
 // console.log(percentageOfWorld2(populationJapan));
+
+////////////////////////////////////////////
+// Arrow functions
+
+const percentageOfWorld3 = (population) => (population / 7900000000) * 100;
+// const pop3 = percentageOfWorld3(population);
+// console.log(pop3);
+
+////////////////////////////////////////////
+// Functions inside functions
+
+const describePopulation = function (country, population) {
+  return `${country} has ${population} people, which is about ${percentageOfWorld3(
+    population
+  )}% of the world.`;
+};
+
+// console.log(describePopulation("China", populationChina));
+// console.log(describePopulation("Japan", populationJapan));
+// console.log(describePopulation(country, population));
+
+////////////////////////////////////////////
+// Arrays
+
+const populationThai = 30000000;
+const populations = [
+  population,
+  populationChina,
+  populationJapan,
+  populationThai,
+];
+
+// console.log(populations.length === 4);
+
+const percentages = [
+  percentageOfWorld1(population),
+  percentageOfWorld1(populationChina),
+  percentageOfWorld1(populationJapan),
+  percentageOfWorld1(populationThai),
+];
+
+// console.log(percentages);
+
+////////////////////////////////////////////
+// Array operations
+
+neighbours = ["China", "North Korea", "Japan"];
+neighbours.push("Utopia");
+neighbours.pop();
+
+// if (neighbours.includes("Germany")) {
+//   console.log("Central EU?😉");
+// } else {
+//   console.log("Probably not a central European country :D");
+// }
+
+neighbours[neighbours.indexOf("China")] = "Taiwan";
+// console.log(neighbours);
 
 ////////////////////////////////////////////
