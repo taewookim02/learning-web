@@ -542,3 +542,53 @@ for (let exercise = 1; exercise < 4; exercise++) {
 
 ////////////////////////////////////////////////
 // While loops
+
+// for (let rep = 1; rep <= 5; rep++) {
+//   console.log(`Bench presses${rep} 🏋️‍♀️`);
+// }
+
+// let rep = 1;
+// while (rep <= 10) {
+//   console.log(`WHILE: Bench presses${rep} 🏋️‍♀️`);
+//   rep++;
+// }
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+//   if (dice === 6) console.log("Loop is about to end...");
+// }
+
+// console.log(Math.trunc(Math.random() *));
+
+////////////////////////////////////////////////
+// Coding Challenge #4
+const calcTip = (bill) =>
+  bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(tips[i] + bills[i]);
+}
+console.log(tips);
+console.log(totals);
+
+const calcAverage = (arr) => {
+  let sum = 0;
+  // Calculating total
+  for (let i = 0; i < arr.length; i++) sum += arr[i];
+
+  // Returning average
+  return sum / arr.length;
+};
+console.log(calcAverage(totals));
+console.log(calcAverage(tips));
+
+const myList = [1, 2, 3, 4, 5];
+// for (let i = 0; i < myList.length; i++) console.log(myList[i]);
