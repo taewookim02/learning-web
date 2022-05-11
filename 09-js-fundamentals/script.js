@@ -1,29 +1,56 @@
 ////////////////////////////////////////////
 // Variables
+
+// name= "dasom"
+
+let name;
+
+name = "sungwook";
+// console.log(name);
+const food = ["tomatoes", "onions", "garlic"];
+// food.pop();
+console.log(food.pop());
+const item = food.pop();
+console.log(item);
+
+// declartive
+function foodCutting(numberOfFoodItems) {
+  return numberOfFoodItems * 4;
+}
+
+const juicer = (food) => food.length * 3;
+
+const percentageOfWorld3 = (population) => (population / 7900000000) * 100;
+
+hoisting;
+
+console.log(`I have cut ${foodCutting(food.length)} pieces of garlic`);
+
+// console.log(food);
+
+// let js = "amazing";
+// console.log(40 + 8 + 23 - 10);
+
+// console.log("taewoo");
+// console.log(23);
+
+// let firstName = "Matilde";
+// console.log(firstName);
+// console.log(firstName);
+// console.log(firstName);
+
+// let jona_matilda = "JM";
+// let $function = 26;
+// // let name = "Jonas";
+
+// let Person = "jonas";
+// let PI = 3.1415;
+
+// let myFirstJob = "programmer";
+// let myCurrentJob = "student";
+
+// console.log(myCurrentJob);
 /*
-let js = "amazing";
-console.log(40 + 8 + 23 - 10);
-
-console.log("taewoo");
-console.log(23);
-
-let firstName = "Matilde";
-console.log(firstName);
-console.log(firstName);
-console.log(firstName);
-
-let jona_matilda = "JM";
-let $function = 26;
-// let name = "Jonas";
-
-let Person = "jonas";
-let PI = 3.1415;
-
-let myFirstJob = "programmer";
-let myCurrentJob = "student";
-
-console.log(myCurrentJob);
-
 ////////////////////////////////////////////
 // Data types
 true;
@@ -75,6 +102,9 @@ const now = 2037;
 const ageJonas = now - 1991;
 const ageSarah = now - 2028;
 console.log(ageJonas, ageSarah);
+
+const birthYear = 1996
+
 
 console.log(ageJonas * 2, ageJonas / 10, 2 ** 3);
 // 2 ** 3 means 2 to the power of 3 = 2 * 2 * 2
