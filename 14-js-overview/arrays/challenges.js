@@ -73,3 +73,122 @@ const calcAverageHumanAge = ages => {
 };
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
  */
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+// 1-2
+dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+console.log(dogs);
+
+// 2-2
+const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
+console.log(dogSarah);
+console.log(
+  `Sarah's dog is eating too ${
+    dogSarah.curFood > dogSarah.recFood ? 'much' : 'little'
+  }`
+);
+
+// 3-2
+
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recFood)
+  .flatMap(dog => dog.owners);
+console.log(ownersEatTooMuch);
+
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recFood)
+  .flatMap(dog => dog.owners);
+console.log(ownersEatTooLittle);
+
+// 4-2
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
+
+// 5-2
+console.log(dogs.some(dog => dog.curFood === dog.recFood));
+
+// 6-2
+const checkEatingOkay = dog =>
+  dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+
+console.log(dogs.some(checkEatingOkay));
+
+// 7-2
+console.log(dogs.filter(checkEatingOkay));
+
+// 8-2
+const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+console.log(dogsSorted);
+/* 
+// 1
+dogs.forEach((val, i) => (val.recommendedFood = val.weight ** 0.75 * 28));
+console.log(dogs);
+
+// 2
+dogs.forEach(val => {
+  if (val.owners.includes('Sarah')) {
+    console.log(
+      val.curFood > val.recommendedFood * 0.9 &&
+        val.curFood < val.recommendedFood * 1.1
+        ? `It's eating too little: curFood: ${val.curFood}, recFood: ${val.recommendedFood}`
+        : `It's eating too much curFood: ${val.curFood}, recFood: ${val.recommendedFood}`
+    );
+  }
+});
+
+// 3 (filter?) https://stackoverflow.com/questions/24806772/how-to-skip-over-an-element-in-map
+const ownersEatTooLittle = [];
+const ownersEatTooMuch = dogs.map(val => {
+  if (val.curFood > val.recommendedFood * 1.1) {
+    return val.owners.flat().filter(el => el !== undefined);
+  } else if (val.curFood < val.recommendedFood * 0.9) {
+    ownersEatTooLittle.push(val.owners.flat());
+  }
+});
+const ownersEatMore = ownersEatTooMuch.flat().filter(el => el !== undefined);
+const ownersEatLess = ownersEatTooLittle.flat();
+
+// 4
+
+console.log(`${ownersEatLess.join(' and ')}'s dogs eat too little!`);
+console.log(`${ownersEatMore.join(' and ')}'s dogs eat too much!`);
+
+// 5
+dogs.forEach(val => {
+  if (val.curFood === val.recommendedFood) console.log(true);
+  else console.log(false);
+});
+
+// 6
+dogs.forEach(val => {
+  if (
+    val.curFood > 0.9 * val.recommendedFood &&
+    val.curFood < 1.1 * val.recommendedFood
+  )
+    console.log(true);
+  else console.log(false);
+});
+
+// 7
+const okayArr = dogs
+  .map(val => {
+    if (
+      val.curFood > 0.9 * val.recommendedFood &&
+      val.curFood < 1.1 * val.recommendedFood
+    )
+      return val;
+  })
+  .filter(el => el !== undefined);
+console.log(okayArr);
+
+// 8
+const softCopy = dogs.slice().map(el => el.recommendedFood);
+console.log(softCopy.sort((a, b) => a - b));
+// movements.sort((a, b) => a - b);
+*/
