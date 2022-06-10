@@ -143,4 +143,74 @@ tesla.accelerate();
 tesla.brake();
 // tesla.chargeBattery(60);
 console.log(tesla);
+
+///////////////////////////////////////////////////
+// Challenge 4
+
+class CarCl {
+  constructor(maker, speed) {
+    this.maker = maker;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(this.speed);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(this.speed);
+    return this;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+// EVCl
+class EVCl extends CarCl {
+  #charge;
+  constructor(maker, speed, charge) {
+    super(maker, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `Tesla going at ${this.speed} km/h, with a charge of ${this.#charge}%`
+    );
+    return this;
+  }
+}
+
+const car1 = new EVCl("Tesla", 120, 23);
+car1.accelerate();
+car1.chargeBattery(56);
+car1.brake();
+
+const car2 = new EVCl("Rivian", 120, 23);
+car2.brake();
+console.log(car2);
+car2
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .chargeBattery(50)
+  .accelerate();
+
+console.log(car2.speedUS);
  */
