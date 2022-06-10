@@ -1,7 +1,7 @@
 # learning-web
 
 ### This repository is for following online tutorials and for future references
-Disclaimer: I do not own the materials of these courses, and will change visibility upon request
+Disclaimer: I do not own the materials of these courses, and will change visibility upon request<br />
 These courses are great btw! Love how Jonas teaches :D Go give him a try
 
 
