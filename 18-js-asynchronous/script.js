@@ -37,6 +37,11 @@ const renderCountry = function (data, className = "") {
   countriesContainer.style.opacity = 1;
 };
 
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText("beforeend", msg);
+  countriesContainer.style.opacity = 1;
+};
+
 const getCountryAndNeighbor = function (country) {
   // AJAX call country 1
   const request = new XMLHttpRequest();
@@ -117,21 +122,121 @@ setTimeout(() => {
 //     });
 // };
 
+// const getCountryData = function (country) {
+//   // Country1
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then((response) => {
+//       console.log(response);
+
+//       if (!response.ok)
+//         throw new Error(`Country not found (${response.status})`);
+
+//       return response.json();
+//     })
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       // const neighbor = data[0].borders?.[0]; // <-- I don't understand optional chaining yet
+//       const neighbor = "arasde";
+
+//       if (!neighbor) return;
+
+//       // Country 2
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
+//     })
+//     .then((response) => {
+//       if (!response.ok)
+//         throw new Error(`Country not found (${response.status})`);
+
+//       return response.json();
+//     })
+//     .then((data) => renderCountry(data[0], "neighbour"))
+//     .catch((err) => {
+//       console.log(`${err} 💥💥💥`);
+//       renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+const getJSON = function (url, errorMsg = "Something went wrong") {
+  return fetch(url).then((response) => {
+    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+
+    return response.json();
+  });
+};
+
 const getCountryData = function (country) {
   // Country1
-  fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then((response) => response.json())
+  getJSON(`https://restcountries.com/v3.1/name/${country}`, "Country not found")
     .then((data) => {
       renderCountry(data[0]);
       const neighbor = data[0].borders?.[0]; // <-- I don't understand optional chaining yet
+      // const neighbor = "arasde";
 
-      if (!neighbor) return;
+      if (!neighbor) throw new Error("No neighbour found");
 
       // Country 2
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
+      return getJSON(
+        `https://restcountries.com/v3.1/alpha/${neighbor}`,
+        "Country not found"
+      );
     })
-    .then((response) => response.json())
-    .then((data) => renderCountry(data[0], "neighbour"));
+
+    .then((data) => renderCountry(data[0], "neighbour"))
+    .catch((err) => {
+      console.log(`${err} 💥💥💥`);
+      renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 };
 
-getCountryData("germany");
+const titlize = function (str) {
+  return str[0].toUpperCase() + str.slice(1).toLowerCase();
+};
+
+const whereAmI = function (lat, lng) {
+  // reverse geocoding
+  // https://geocode.xyz/51.50354,-0.12768?geoit=xml
+  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+    .then((response) => {
+      console.log(response);
+      if (!response.ok)
+        throw new Error(`You're going too fast! (${response.status})`);
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(`You are in ${titlize(data.city)}, ${data.country}`);
+
+      // renderCountry
+      // getCountryData(data.country);
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+    })
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Country not found (${response.status})`);
+      return response.json();
+    })
+    .then((data) => {
+      renderCountry(data[0]);
+      console.log(data[0].name.common);
+    })
+    .catch((err) => {
+      console.log(`${err}!!💀`);
+    });
+};
+
+btn.addEventListener("click", function () {
+  whereAmI(36.4806143, 127.2451563);
+  whereAmI(19.037, 72.873);
+  whereAmI(-33.933, 18.474);
+});
+// 19.037, 72.873
+// whereAmI(55.4509293, 50.304837);
+// -33.933, 18.474
+// 36.4806143,127.2451563
+// getCountryData("South Korea");
