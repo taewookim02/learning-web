@@ -41,6 +41,7 @@ const renderError = function (msg) {
   countriesContainer.insertAdjacentText("beforeend", msg);
   countriesContainer.style.opacity = 1;
 };
+/*
 
 const getCountryAndNeighbor = function (country) {
   // AJAX call country 1
@@ -76,7 +77,6 @@ const getCountryAndNeighbor = function (country) {
     });
   });
 };
-/*
 
 // getCountryAndNeighbor("portugal");
 // getCountryAndNeighbor("usa");
@@ -97,7 +97,6 @@ setTimeout(() => {
   }, 1000);
 }, 1000);
 
- */
 ///////////////////////////////////////
 // Promises, fetch API
 
@@ -240,3 +239,228 @@ btn.addEventListener("click", function () {
 // -33.933, 18.474
 // 36.4806143,127.2451563
 // getCountryData("South Korea");
+
+///////////////////////////////////////
+// Event loop in action
+console.log("Test start");
+setTimeout(() => console.log("0 sec timer"), 0); // callback queue
+Promise.resolve("Resolved promise 1").then((res) => console.log(res)); // microtask queue
+
+Promise.resolve("Resolved promise 2").then((res) => {
+  for (let i = 0; i < 1000000000; i++) {}
+  console.log(res);
+});
+console.log("Test end");
+
+///////////////////////////////////////
+// Promise
+
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log("Lottery draw is happening 🔮");
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve("You WIN 💰");
+    } else {
+      reject(new Error("You lost your money 💩"));
+    }
+  }, 2000);
+});
+
+lotteryPromise
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+// Promisifying setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(1)
+  .then(() => {
+    console.log("I waited for 1 seconds");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("I waited for 2 second");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("I waited for 3 seconds");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("I waited for 4 seconds");
+    return wait(1);
+  });
+
+Promise.resolve("abac").then((x) => console.log(x));
+Promise.reject(new Error("Promelbemo!!")).catch((x) => console.error(x));
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => resolve(position),
+    //   (err) => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+const titlize = function (str) {
+  return str[0].toUpperCase() + str.slice(1).toLowerCase();
+};
+getPosition().then((pos) => console.log(pos));
+
+const whereAmI = function (lat, lng) {
+  getPosition()
+    .then((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+
+    // reverse geocoding
+    // https://geocode.xyz/51.50354,-0.12768?geoit=xml
+
+    .then((response) => {
+      console.log(response);
+      if (!response.ok)
+        throw new Error(`You're going too fast! (${response.status})`);
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(`You are in ${titlize(data.city)}, ${data.country}`);
+
+      // renderCountry
+      // getCountryData(data.country);
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+    })
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Country not found (${response.status})`);
+      return response.json();
+    })
+    .then((data) => {
+      renderCountry(data[0]);
+      console.log(data[0].name.common);
+    })
+    .catch((err) => {
+      console.log(`${err}!!💀`);
+    });
+};
+
+btn.addEventListener("click", whereAmI);
+
+
+
+///////////////////////////////////////
+// Coding challenge 2
+
+// btn.style.display = "none";
+
+// document.createElement('img')
+// const createImage = function (imgPath) {
+//   return new Promise(function (resolve, reject) {
+//     const createdImage = document.createElement("img");
+//     createImage.src = "imgPath";
+//     createImage.addEventListener("load", function () {});
+//   });
+// };
+// createImage("img/img-1.jpg");
+
+const imgContainer = document.querySelector(".images");
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement("img");
+    img.src = imgPath;
+
+    img.addEventListener("load", function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener("error", function () {
+      reject(new Error("Image not found"));
+    });
+  });
+};
+let currentImg;
+createImage("img/img-1.jpg")
+  .then((img) => {
+    currentImg = img;
+    console.log("Image 1 loaded");
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = "none";
+    return createImage("img/img-2.jpg");
+  })
+  .then((img) => {
+    currentImg = img;
+    console.log("Image 2 loaded");
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = "none";
+  })
+  .catch((err) => console.error(err));
+ */
+///////////////////////////////////////
+///////////////////////////////////////
+// Async, await
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = async function () {
+  try {
+    // Geolocation
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
+
+    // Reverse geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!resGeo.ok) throw new Error("Problem getting location data");
+
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo);
+
+    // Country data
+    const res = await fetch(
+      `https://restcountries.com/v3.1/name/${dataGeo.country}`
+    );
+    if (!res.ok) throw new Error("Problem getting country data");
+    const [data] = await res.json();
+
+    console.log(data);
+    renderCountry(data);
+  } catch (err) {
+    console.error(err);
+    renderError(`Something went wrong 💥 ${err.message}`);
+  }
+};
+
+whereAmI();
+whereAmI();
+whereAmI();
+console.log("First");
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   y = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
