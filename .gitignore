@@ -31,3 +31,4 @@ Temporary Items
 # iCloud generated files
 *.icloud
 node_modules
+.parcel-cache
