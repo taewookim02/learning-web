@@ -30,3 +30,4 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
+node_modules
