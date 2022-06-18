@@ -3,7 +3,7 @@
 // import { addToCart, totalPrice as price, qt } from "./shoppingCart.js";
 // addToCart("bread", 5);
 // console.log(price, qt);
-console.log("Importing module");
+console.log('Importing module');
 
 // import * as ShoppingCart from "./shoppingCart.js";
 // ShoppingCart.addToCart("btbbbbbbbbbb   nbbbbb", 5);
@@ -12,10 +12,10 @@ console.log("Importing module");
 // import add, { addToCart, totalPrice as price, qt } from "./shoppingCart.js";
 // console.log(price, qt);
 
-import add, { cart } from "./shoppingCart.js";
-add("bread", 213);
-add("spinace", 2);
-add("apple", 4);
+import add, { cart } from './shoppingCart.js';
+add('bread', 213);
+add('spinace', 2);
+add('apple', 4);
 
 console.log(cart);
 /*
@@ -114,13 +114,13 @@ const { addToCart } = require('./shoppingCart.js');
 // Introduction to NPM
 
 // import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
-import cloneDeep from "lodash-es"; //parcel is smart
+import cloneDeep from 'lodash-es'; //parcel is smart
 // import cloneDeep from "lodash"; //parcel is smart < not working
 
 const state = {
   cart: [
-    { product: "bread", quantity: 5 },
-    { product: "pizza", quantity: 4 },
+    { product: 'bread', quantity: 5 },
+    { product: 'pizza', quantity: 4 },
   ],
   user: { loggedIn: true },
 };
@@ -144,28 +144,28 @@ if (module.hot) {
 }
 
 class Person {
-  #greeting = "hey";
+  #greeting = 'hey';
   constructor(name) {
     this.name = name;
     console.log(`${this.#greeting}, ${this.name}`);
   }
 }
-const jonas = new Person("Jonas");
+const jonas = new Person('Jonas');
 
-console.log("Jonas" ?? null);
+console.log('Jonas' ?? null);
 
-console.log(cart.find((el) => el.quantity >= 2));
-Promise.resolve("TEST").then((x) => console.log(x));
+console.log(cart.find(el => el.quantity >= 2));
+Promise.resolve('TEST').then(x => console.log(x));
 
 // Polifilling
 // npm i core-js
-import "core-js/stable";
+import 'core-js/stable';
 // import "core-js/stable/array/find";
 // import "core-js/stable/promise";
 
 // Polifilling async functions
 // npm i regenerator-runtime
-import "regenerator-runtime/runtime";
+import 'regenerator-runtime/runtime';
 
 //////////////////////////////////////////
 // Modern and Clean code
