@@ -11,3 +11,10 @@ const timeout = function (s) {
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
+// npm init
+// package.json:
+// Remove main for Parcel v2
+// "scripts": {
+//   "start": "parcel index.html",
+//   "build": "parcel build index.html"
+// },
