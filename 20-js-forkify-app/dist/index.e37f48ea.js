@@ -577,16 +577,28 @@ const controlSearchResults = async function() {
         await _modelJs.loadSearchResults(query);
         // 3) Render results
         // resultsView.render(model.state.search.results);
-        (0, _resultsViewJsDefault.default).render(_modelJs.getSearchResultsPage(2));
+        (0, _resultsViewJsDefault.default).render(_modelJs.getSearchResultsPage());
         // 4) Render initial pagination buttons
         (0, _paginationViewJsDefault.default).render(_modelJs.state.search);
     } catch (err) {
         console.log(err);
     }
 };
+const controlPagination = function(goToPage) {
+    // 1) Render NEW results
+    (0, _resultsViewJsDefault.default).render(_modelJs.getSearchResultsPage(goToPage));
+    // 2) Render NEW pagination buttons
+    (0, _paginationViewJsDefault.default).render(_modelJs.state.search);
+};
+const controlServings = function() {
+    // Update the recipe servings (in state)
+    _modelJs.updateServings(6);
+// Update the recipe view
+};
 const init = function() {
     (0, _recipeViewJsDefault.default).addHandlerRender(controlRecipes);
     (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
+    (0, _paginationViewJsDefault.default).addHandlerClick(controlPagination);
 };
 init();
 
@@ -2429,6 +2441,7 @@ parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe);
 parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults);
 parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
+parcelHelpers.export(exports, "updateServings", ()=>updateServings);
 var _regeneratorRuntime = require("regenerator-runtime");
 var _configJs = require("./config.js");
 var _helpersJs = require("./helpers.js");
@@ -2456,6 +2469,7 @@ const loadRecipe = async function(id) {
             cookingTime: recipe.cooking_time,
             ingredients: recipe.ingredients
         };
+        console.log(data);
     } catch (err) {
         console.log(`${err} 💥💥💥`);
         throw err;
@@ -2483,6 +2497,13 @@ const getSearchResultsPage = function(page = state.search.page) {
     const start = (page - 1) * state.search.resultsPerPage; // 0;
     const end = page * state.search.resultsPerPage; // 9;
     return state.search.results.slice(start, end);
+};
+const updateServings = function(newServings) {
+    state.recipe.ingredients.forEach((ing)=>{
+        ing.quantity = ing.quantity * newServings / state.recipe.servings;
+    // newQt = oldQt * newServings / oldServings // 2 * 8 / 4 = 4
+    });
+    state.recipe.servings = newServings;
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","regenerator-runtime":"dXNgZ","./config.js":"k5Hzs","./helpers.js":"hGI1E"}],"k5Hzs":[function(require,module,exports) {
@@ -3048,17 +3069,53 @@ var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 "use strict";
 class PaginationView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".pagination");
+    addHandlerClick(handler) {
+        this._parentElement.addEventListener("click", function(e) {
+            const btn = e.target.closest(".btn--inline");
+            if (!btn) return;
+            const goToPage = +btn.dataset.goto;
+            console.log(goToPage);
+            handler(goToPage);
+        });
+    }
     _generateMarkup() {
+        const curPage = this._data.page;
         const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
-        console.log(numPages);
         // Page 1, and there are other pages
-        if (this._data.page === 1 && numPages > 1) return "page1, others";
+        if (curPage === 1 && numPages > 1) return `
+      <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">
+        <span>Page ${curPage + 1}</span>
+        <svg class="search__icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
+        </svg>
+      </button>
+      `;
         // Last page
-        if (this._data.page === numPages && numPages > 1) return "last page";
+        if (curPage === numPages && numPages > 1) return `
+          <button data-goto="${curPage - 1}" class="btn--inline pagination__btn--prev">
+            <svg class="search__icon">
+              <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
+            </svg>
+            <span>Page ${curPage - 1}</span>
+          </button>
+      `;
         // Other page
-        if (this, _data.page < numPages) return "other page";
+        if (this._data.page < numPages) return `
+      <button data-goto="${curPage - 1}" class="btn--inline pagination__btn--prev">
+        <svg class="search__icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
+        </svg>
+        <span>Page ${curPage - 1}</span>
+      </button>
+      <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">
+        <span>Page ${curPage + 1}</span>
+        <svg class="search__icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
+        </svg>
+      </button>
+  `;
         // Page 1, and there are NO other pages
-        return "only 1 page";
+        return "";
     }
 }
 exports.default = new PaginationView();
