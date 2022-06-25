@@ -7,7 +7,6 @@ import paginationView from './views/paginationView.js';
 
 import 'core-js/stable'; // polifilling everything else
 import 'regenerator-runtime/runtime'; // polifilling async await
-// forkify API key : 94b4e9b1-f224-4eff-89b2-4f3bf4c2ae41
 
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
@@ -73,7 +72,6 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view
-  // recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
