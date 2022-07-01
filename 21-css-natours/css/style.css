@@ -14,7 +14,7 @@ Dark green: #28b485
 }
 
 html {
-  font-size: 10px;
+  font-size: 62.5%;
 }
 
 body {
@@ -192,4 +192,5 @@ body {
 .btn-animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
   animation-fill-mode: backwards;
+  font-size: 1.6rem;
 }
