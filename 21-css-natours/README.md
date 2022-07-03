@@ -1,6 +1,6 @@
 # Natours (float layout)
 
-## Usage
+## Editing Sass
 
 1. `npm install`
 2. `npm compile:sass`
