@@ -28,6 +28,7 @@
   &__left {
     width: 33.33333333%;
     display: table-cell;
+    vertical-align: middle;
   }
 
   &__right {
@@ -59,6 +60,10 @@
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
+
+    @include respond(phone) {
+      column-count: 1;
+    }
   }
 
   // Open states
@@ -88,6 +93,27 @@
 
     &:hover {
       color: $color-primary;
+    }
+  }
+
+  // RESPONSIVE
+  @include respond(tab-port) {
+    &__content {
+      display: grid;
+    }
+
+    &__left {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+
+      @include respond(phone) {
+        display: none;
+      }
+    }
+
+    &__right {
+      width: 100%;
     }
   }
 }
