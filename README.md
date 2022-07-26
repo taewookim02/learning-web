@@ -13,11 +13,11 @@
 ## Projects
 
 - [https://omnifood-taewoo.netlify.app/](https://omnifood-taewoo.netlify.app/)
-  - _HTML, CSS, JS_ (design principles, responsive layouts, using flex, grid)
+  - _HTML, CSS, JS_ (design principles, responsive layouts, flex, grid)
 - [https://bankist-taewoo.netlify.app/](https://bankist-taewoo.netlify.app/)
   - _HTML, CSS, JS_ (DOM manipulation, website optimization, implementation of components like modal, carousel, etc)
 - [https://mapty-taewoo.netlify.app/](https://mapty-taewoo.netlify.app/)
-  - _HTML, CSS, JS_ (ES6 Classes with OOP artchitecture, geolocation API, localStorage API)
+  - _HTML, CSS, JS_ (OOP with ES6 Classes, prototypal inheritance, geolocation API, localStorage)
 - [https://forkify-taewoo.netlify.app/](https://forkify-taewoo.netlify.app/)
   - _HTML, CSS, JS_ (Node.js MVC architecture, usage of APIs, async/await)
 - [https://natours-taewoo.netlify.app/](https://natours-taewoo.netlify.app/)
