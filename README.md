@@ -12,6 +12,6 @@
 
 #### Projects
 
-- [Omnifood](https://omnifood-taewoo.netlify.app)
-- [Forkify](https://forkify-taewoo.netlify.app)
-- [Natours](https://natours-taewoo.netlify.app)
+- [https://omnifood-taewoo.netlify.app](https://omnifood-taewoo.netlify.app)
+- [https://forkify-taewoo.netlify.app](https://forkify-taewoo.netlify.app)
+- [https://natours-taewoo.netlify.app](https://natours-taewoo.netlify.app)
