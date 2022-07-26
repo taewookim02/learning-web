@@ -13,7 +13,7 @@
 #### Projects
 
 - [https://omnifood-taewoo.netlify.app](https://omnifood-taewoo.netlify.app)
-  - HTML, CSS, and a little JS (Focusing on design principles, responsive layouts, using flex and grid)
+  - HTML, CSS, JS (Focusing on design principles, responsive layouts, using flex and grid)
 - [https://forkify-taewoo.netlify.app](https://forkify-taewoo.netlify.app)
   - HTML, CSS, JS (Focusing on JS MVC architecture, usage of APIs, async, and await)
 - [https://natours-taewoo.netlify.app](https://natours-taewoo.netlify.app)
