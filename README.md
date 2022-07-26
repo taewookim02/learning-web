@@ -19,7 +19,7 @@
 - [https://mapty-taewoo.netlify.app/](https://mapty-taewoo.netlify.app/)
   - _HTML, CSS, JS_ (OOP with ES6 Classes, prototypal inheritance, geolocation API, localStorage)
 - [https://forkify-taewoo.netlify.app/](https://forkify-taewoo.netlify.app/)
-  - _HTML, CSS, JS_ (Node.js MVC architecture, usage of APIs, async/await)
+  - _HTML, CSS, JS_ (Node.js MVC architecture, usage of APIs, async/await, module bundler: Parcel)
 - [https://natours-taewoo.netlify.app/](https://natours-taewoo.netlify.app/)
   - _HTML, Sass_ (Sass architecture, animations, npm scripts)
 - [https://trillo-taewoo.netlify.app/](https://trillo-taewoo.netlify.app/)
