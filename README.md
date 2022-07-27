@@ -26,7 +26,7 @@
   - Node.js MVC architecture, usage of APIs, async/await, module bundling with Parcel
 - [https://natours-taewoo.netlify.app/](https://natours-taewoo.netlify.app/)
   - _HTML, Sass_
-  - Sass architecture, animations, npm scripts (compile, concat, prefix, compress)
+  - BEM methodology, Sass architecture, animations, npm scripts (compile, concat, prefix, compress)
 - [https://trillo-taewoo.netlify.app/](https://trillo-taewoo.netlify.app/)
   - _HTML, Sass_
-  - CSS Flexbox deep dive, responsive design, npm scripts
+  - CSS Flexbox deep dive, BEM methodology, responsive design, npm scripts
