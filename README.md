@@ -24,3 +24,5 @@
   - BEM methodology, Sass architecture, animations, npm scripts (compile, concat, prefix, compress)
 - [https://trillo-taewoo.netlify.app/](https://trillo-taewoo.netlify.app/)
   - CSS Flexbox deep dive, BEM methodology, responsive design, npm scripts
+- [https://nexter-taewoo.netlify.app/](https://nexter-taewoo.netlify.app/)
+  - CSS Grid deep dive, BEM methodology, media queries, browser support
